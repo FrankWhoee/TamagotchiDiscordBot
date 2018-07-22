@@ -1,5 +1,8 @@
 package bot.fun.tamagotchi;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +14,10 @@ public class Ref {
 	public final static String filename = "tamagotchis.json";
 	public final static String foldername = "Tamagotchis";
 	
+	public final static Long updateInterval = 300000L;
+	
+	public final static Long specialId = 461312499787104256L;
+	
 	public static final Map<String, Integer> emojis;
     static
     {
@@ -20,7 +27,23 @@ public class Ref {
     	emojis.put("3⃣", 3);
     	emojis.put("4⃣", 4);
     }
-   
+    
+	public static final long VANCOUVERTOUTC = (long)2.52e+7; //UNIT: MILLESECONDS
+	public static final DateFormat dateFormat = new SimpleDateFormat("yyy/MM/dd HH:mm:ss");
+    
+    public static String getTime() {
+		Date currDate = new Date();
+		currDate = new Date((long)(currDate.getTime() + VANCOUVERTOUTC));
+		String currentDate = dateFormat.format(currDate) + " UTC";
+		return currentDate;
+	}
+    
+    public static Date getTimeRaw() {
+		Date currDate = new Date();
+		currDate = new Date((long)(currDate.getTime() + VANCOUVERTOUTC));
+		return currDate;
+	}
+    
     public static final Map<String, String> foodEmojis;
     static
     {
@@ -100,13 +123,29 @@ public class Ref {
     	foodEmojis.put("🍵","snack"); //tea
     	foodEmojis.put("🍶","alcohol"); //sake
     	foodEmojis.put("🍾","alcohol"); //alcohol
-    	foodEmojis.put("🍷","meal"); //Wine Glass
-    	foodEmojis.put("🍸","meal"); //Cocktail Glass
+    	foodEmojis.put("🍷","alcohol"); //Wine Glass
+    	foodEmojis.put("🍸","alcohol"); //Cocktail Glass
     	foodEmojis.put("🍹","snack"); //Tropical Drink
     	foodEmojis.put("🍺","alcohol"); //Beer Mug
     	foodEmojis.put("🍻","alcohol"); //Clinking Beer Mugs
     	foodEmojis.put("🥂","alcohol"); //Clinking Glasses
     	foodEmojis.put("🥃","alcohol"); //Tumbler Glass
-    	 
+    	foodEmojis.put("🚬","alcohol"); //Tumbler Glass
+    	foodEmojis.put("💊","medicine"); //Tumbler Glass
+    	
+    	//Special
+    	foodEmojis.put("🔪","knife"); //Knife
+    	foodEmojis.put("🗡️", "knife"); //Dagger
+    	foodEmojis.put("⚔️", "knife"); //Crossed Swords
+    	
+    	foodEmojis.put("🏹", "projectile"); //Bow and Arrow
+    	foodEmojis.put("🔫","projectile"); //Gun
+    	
+    	foodEmojis.put("💣","bomb"); //Gun
+    	
+    	foodEmojis.put("💩", "poop"); //poop
+    	
+    	foodEmojis.put("461312499787104256", "special"); //???
+
     }
 }
